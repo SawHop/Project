@@ -17,7 +17,11 @@ $config = [
         'auth' => [
             'class' => 'app\modules\auth\Module',
         ],
+        'task' => [
+            'class' => 'app\modules\task\Module',
+        ],
     ],
+
     'components' => [
         'activity' => ['class' => \app\components\ActivityComponent::class,
             'model_class' => \app\models\Activity::class
