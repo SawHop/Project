@@ -21,10 +21,12 @@ $config = [
             'class' => 'app\modules\task\Module',
         ],
     ],
-
     'components' => [
         'activity' => ['class' => \app\components\ActivityComponent::class,
             'model_class' => \app\models\Activity::class
+        ],
+        'default' => ['class' => \app\components\DefaultComponent::class,
+            'model_class' => \app\modules\task\models\Calendar::class
         ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation

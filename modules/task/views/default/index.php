@@ -11,6 +11,7 @@
 
 <div class="row">
     <div class="col-md-6">
+        <?= $hello ?>
         <?php $form = \yii\bootstrap\ActiveForm::begin([
             'id' => 'calendar',
             'method' => 'POST'

@@ -2,21 +2,20 @@
 
 namespace app\modules\task\controllers;
 
+use app\base\BaseController;
 use app\modules\task\models\Calendar;
-use yii\web\Controller;
+use app\modules\task\controllers\actions\DefaultIndexAction;
 
-/**
- * Default controller for the `auth` module
- */
-class DefaultController extends Controller
+
+
+class DefaultController extends BaseController
 {
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
-    public function actionIndex()
+
+    public function actions()
     {
-        $model = new Calendar();
-        return $this->render('index', ['model' => $model]);
+        return [
+           'index' => ['class' => DefaultIndexAction::class, 'hello' => 'Hello World'],
+            'ky' => ['class' => DefaultIndexAction::class]
+        ];
     }
 }
