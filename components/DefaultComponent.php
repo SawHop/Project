@@ -11,6 +11,8 @@ namespace app\components;
 
 use app\base\BaseComponent;
 use app\modules\task\models\Calendar;
+use yii\validators\EmailValidator;
+use yii\web\UploadedFile;
 
 class DefaultComponent extends BaseComponent
 {
@@ -21,12 +23,21 @@ class DefaultComponent extends BaseComponent
         return new $this->model_class;
     }
 
-    public function indexDefault($model): bool
+    public function indexDefault($model, $post): bool
     {
-        $model->load(\Yii::$app->request->post());
-        if (!$model->validate()) {
-            //               print_r($model->getErrors());
-            return false;
+        if ($model->load($post)) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+
+            if (!$model->validate()) {
+                $comp = \Yii::createObject(['class' => FileServiceComponent::class]);
+                if (!empty($file = $comp->saveUploadedFile($model->file))) {
+                    $model->file = basename($file);
+                }
+                //               print_r($model->getErrors());
+                return false;
+            }
+
+
         }
         return true;
     }
