@@ -13,6 +13,8 @@
             <?= $model->title?>
         </p>
         <p>
+
+
         <p><?=\yii\helpers\Html::img('/images/'.$model->file,['width'=>150])?></p>
         </p>
     </div>
